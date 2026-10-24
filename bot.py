@@ -54,10 +54,13 @@ def handle_message(message):
 
 
 def main():
-    updates = telegram("getUpdates", {
-        "timeout": 0,
-        "limit": 100
-    })
+    
+    print(
+        "Получено обновлений:",
+        len(updates.get("result", [])),
+        flush=True
+    )
+
 
     for update in updates.get("result", []):
         if "message" in update:
