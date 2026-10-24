@@ -52,23 +52,21 @@ def handle_message(message):
 
 
 
+
 def main():
     updates = telegram("getUpdates", {
         "timeout": 0,
-        "offset": -1
+        "limit": 100
     })
 
     for update in updates.get("result", []):
         if "message" in update:
             handle_message(update["message"])
 
-    if updates.get("result"):
-        last_id = updates["result"][-1]["update_id"]
         telegram("getUpdates", {
-            "offset": last_id + 1,
+            "offset": update["update_id"] + 1,
             "timeout": 0
         })
-
 
 
 if __name__ == "__main__":
