@@ -55,6 +55,11 @@ def handle_message(message):
 
 def main():
     
+    updates = telegram("getUpdates", {
+        "timeout": 0,
+        "offset": -1
+    })
+  
     print(
         "Получено обновлений:",
         len(updates.get("result", [])),
